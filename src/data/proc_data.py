@@ -5,7 +5,7 @@ import seaborn as sns
 class ProcData:
     def __init__(self, year):
         self.year = year
-
+ 
     def run(self):
 
         # Load the normalized data
