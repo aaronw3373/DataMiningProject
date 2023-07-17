@@ -40,7 +40,7 @@ while i < len(cleaned_data):
     i += 1
 
 # Save cleaned data to interim folder
-cleaned_data.to_csv('../../data/interim/nba_2023_per_game_cleaned.csv', index=False)
+cleaned_data.to_csv('../../data/interim/nba_2023_cleaned.csv', index=False)
 print(cleaned_data.head())
 
 
@@ -57,5 +57,5 @@ for col in cleaned_data.columns:
 
 
 # Save the Normalized data
-cleaned_data.to_csv('../../data/cleaned/nba_2023_normalized.csv', index=False)
+cleaned_data.to_csv('../../data/interim/nba_2023_normalized.csv', index=False)
 print(cleaned_data.head())
