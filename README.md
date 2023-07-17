@@ -4,12 +4,19 @@ CSCI 5502/4502 Data Mining Summer 23' Project
 
 
 NBA_Trade_Value_Project/
+
 |
+
 |--- data/
+
 |     |--- raw/ (contains the initial scraped data)
+
 |     |--- interim/ (contains data that is in the middle of processing)
+
 |     |--- processed/ (contains clean, processed data ready for analysis)
+
 |
+
 |--- notebooks/ (Jupyter notebooks or similar for exploratory analysis)
 |
 |--- src/ (source code for use in this project)
