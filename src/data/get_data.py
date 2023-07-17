@@ -41,3 +41,47 @@ if response.status_code == 200:
 
 # Respectful crawling by sleeping (this value was gathered by looking up https://www.basketball-reference.com/robots.txt)
 time.sleep(3)
+
+
+# Define the URL of the advanced stats page
+url_advanced = "https://www.basketball-reference.com/leagues/NBA_2023_advanced.html"
+
+# Send a GET request
+response_advanced = requests.get(url_advanced)
+
+# If the GET request is successful, the status code will be 200
+if response_advanced.status_code == 200:
+    # Get the content of the response
+    webpage_advanced = response_advanced.text
+
+    # Create a Beautiful Soup object and specify the parser
+    soup_advanced = BeautifulSoup(webpage_advanced, 'html.parser')
+
+    # Find the table with the stats
+    table_advanced = soup_advanced.find('table', {'id': 'advanced_stats'})
+
+    # Create a data frame by reading the HTML table
+    df_advanced = pd.read_html(str(table_advanced))[0]
+
+    # Print the first 5 rows of the data frame
+    print(df_advanced.head())
+
+    # Save the data frame to a csv file
+    df_advanced.to_csv(os.path.join(raw_data_path, 'nba_2023_advanced_raw.csv'), index=False)
+
+    print(f"Data saved to {os.path.join(raw_data_path, 'nba_2023_advanced_raw.csv')}")
+
+# Respectful crawling by sleeping
+time.sleep(3)
+
+
+# Merge the two datasets on 'Player' and 'Tm' columns
+df_final = pd.merge(df, df_advanced, how='inner', on=['Player', 'Tm','Rk','Pos','Age','G'])
+
+# Print the first 5 rows of the final data frame
+print(df_final.head())
+
+# Save the final data frame to a csv file
+df_final.to_csv(os.path.join(raw_data_path, 'nba_2023_final_raw.csv'), index=False)
+
+print(f"Data saved to {os.path.join(raw_data_path, 'nba_2023_final_raw.csv')}")
