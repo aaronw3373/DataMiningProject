@@ -39,9 +39,9 @@ CSCI 5502/4502 Data Mining Summer 23' Project
        
 	      |     |--- year/ 
        
-       	      |     |     |--- outliers/ 
+	      |     |     |--- outliers/ 
 	      
-       	      |     |     |--- outliers_removed/ 
+	      |     |     |--- outliers_removed/ 
 	      
 	      |     |     |--- comparison/ (comparison between data with outliers and data with outliers removed)
       
