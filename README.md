@@ -17,7 +17,9 @@ CSCI 5502/4502 Data Mining Summer 23' Project
 
 	|
 
-	|--- notebooks/ (Jupyter notebooks or similar for exploratory analysis)
+	|--- models/ 
+ 
+	|     |--- data/ (test and train data for the models)
 
 	|
 
@@ -25,7 +27,7 @@ CSCI 5502/4502 Data Mining Summer 23' Project
 
 	|     |--- data/ (scripts to download or generate data)
 
-	|     |--- features/ (scripts to turn raw data into features for modeling)
+	|     |--- features/ (scripts to turn processed data into features for modeling)
 
 	|     |--- models/ (scripts to train models and then use trained models to make predictions)
 
@@ -34,6 +36,14 @@ CSCI 5502/4502 Data Mining Summer 23' Project
 	|--- output/
 
 	      |--- figures/ (graphs, plots for reporting)
+       
+	      |     |--- year/ 
+       
+       	      |     |     |--- outliers/ 
+	      
+       	      |     |     |--- outliers_removed/ 
+	      
+	      |     |     |--- comparison/ (comparison between data with outliers and data with outliers removed)
       
 	      |--- models/ (trained and serialized models, model predictions, or model summaries)
 
