@@ -2,8 +2,18 @@ import pandas as pd
 
 
 class CleanData:
-    def __init__(self, year):
+    def __init__(self, year, outliers):
         self.year = year
+        self.outliers = outliers
+
+    def remove_outliers(self, df, column_name):
+        Q1 = df[column_name].quantile(0.25)
+        Q3 = df[column_name].quantile(0.75)
+        IQR = Q3 - Q1
+
+        # Only keep rows in the dataframe that are within the IQR
+        df = df[~((df[column_name] < (Q1 - 1.5 * IQR)) | (df[column_name] > (Q3 + 1.5 * IQR)))]
+        return df
 
     def run(self):
 
@@ -53,16 +63,21 @@ class CleanData:
 
 
         for col in cleaned_data.columns:
-            # convert all columns to numeric, if possible
-            
-            
             # Normalize the data if the column isn't in these columns
             if col not in ['Rk','Age','Player', 'Pos','Tm', 'ORB%', 'DRB%', 'TRB%', 'AST%', 'STL%', 'BLK%', 'TOV%', 'USG%','PER','BPM','VORP','FTr','FG%','3P%','2P%','eFG%', 'TS%','3PAr','OWS','DWS','WS','WS/48','OBPM',	'DBPM']:
                 cleaned_data[col] = pd.to_numeric(cleaned_data[col], errors='coerce')
                 cleaned_data[col] = (cleaned_data[col] - cleaned_data[col].min()) / (cleaned_data[col].max() - cleaned_data[col].min())
 
+        
+        if self.outliers.lower() == 'yes':
+            for column in cleaned_data.columns:
+                if cleaned_data[column].dtype in ['int64', 'float64']:
+                    cleaned_data = self.remove_outliers(cleaned_data, column)
 
-
-        # Save the Normalized data
-        cleaned_data.to_csv(f'../../data/interim/nba_{self.year}_normalized.csv', index=False)
-        print(cleaned_data.head())
+            # Save the Normalized data with outliers removed
+            cleaned_data.to_csv(f'../../data/interim/nba_{self.year}_normalized_or.csv', index=False)
+            print(cleaned_data.head())
+        else:
+            # Save the Normalized data
+            cleaned_data.to_csv(f'../../data/interim/nba_{self.year}_normalized.csv', index=False)
+            print(cleaned_data.head())
