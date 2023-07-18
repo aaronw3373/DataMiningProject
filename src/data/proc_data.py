@@ -54,10 +54,10 @@ class ProcData:
             selected_data.to_csv(f'../../data/processed/nba_{self.year}_proc.csv', index=False)
 
         # Ask the user if they want to graph the visualizations
-        graph = input("Do you want to graph the visualizations? (yes/no): ")
+        graph = input("Do you want to save the graphs as PNG? (yes/no): ")
 
         if graph.lower() == 'yes':
-            save_graphs = input("Do you want to save the graphs as PNG? (yes/no): ")
+            save_graphs = input("Do you want to graph the visualizations? (yes/no): ")
         
             # Set the style of the visualization
             sns.set(style="whitegrid")
@@ -75,10 +75,5 @@ class ProcData:
                             plt.title(f'Boxplot of {column} - {self.year}')
                         plt.show()
                     else: 
-                        plt.figure(figsize=(6, 6))
-                        sns.boxplot(x=selected_data[column])
-                        if self.outliers.lower() == 'yes':
-                            plt.title(f'Boxplot of {column} (25th to 75th percentile of the data) - {self.year}')
-                        else:
-                            plt.title(f'Boxplot of {column} - {self.year}')
-                        plt.show()
+                        self.save_graph(selected_data, column)
+                        
