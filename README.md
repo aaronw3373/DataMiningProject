@@ -56,17 +56,20 @@ run
 
  	python main.py
 
-The User will be asked which year they are interested in.
+The User will then be prompted a menu:
 
+	[1]: Gather, clean, and process data 
+ 
+	[2]: Compare Boxcharts 
+ 
+ 		-- **[Both saved graphs for outliers and outliers removed for that year must exist]
+   
+	[3]: Analyze Data
+ 
+		[1]: League Analysis 
+  
+ 		[2]: Player Analysis 
 
-The User will then be given an option to gather, clean, and process data (yes/no)
-
-
-If yes, the User will be asked if they want to remove outliers (yes/no)
-
-If no, the User will be asked if they want to compare data (yes/no) 
-
--- **[Both saved graphs for outliers and outliers removed for that year must exist]**
 
 
 ## Authors
