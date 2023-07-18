@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import cross_val_score
 
 class DecisionTreeAnalysis:
     def __init__(self, year):
@@ -28,6 +29,12 @@ class DecisionTreeAnalysis:
         r2_score = tree.score(X_test, y_test)
 
         print(f'R^2 score of the decision tree model: {r2_score}')
+
+        # Perform cross-validation
+        scores = cross_val_score(tree, X, y, cv=5)
+
+        print(f'Cross-Validation R^2 scores: {scores}')
+        print(f'Average R^2 score: {scores.mean()}')
 
     def run(self):
         file = f'../../data/processed/nba_{self.year}_proc_or.csv'
