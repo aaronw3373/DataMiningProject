@@ -15,6 +15,7 @@ team_data = {
     'WAS': {'W/L%': .427, 'SRS': -1.06},
     'ORL': {'W/L%': .415, 'SRS': -2.39},
     'CHO': {'W/L%': .329, 'SRS': -5.89},
+    'CHA': {'W/L%': .329, 'SRS': -5.89},
     'DET': {'W/L%': .207, 'SRS': -7.73},
     'DEN': {'W/L%': .646, 'SRS': 3.04},
     'MEM': {'W/L%': .622, 'SRS': 3.60},
@@ -55,14 +56,14 @@ class CleanData:
         # Fill missing data with a placeholder value (like 0 or 'unknown')
         cleaned_data = raw_data.fillna(0)
 
-        i = 1
+        i = 0
         while i < len(cleaned_data):
             if cleaned_data.loc[i, 'Tm'] == 'TOT':
                 cleaned_data = cleaned_data.drop(i).reset_index(drop=True)
                 
             i += 1
 
-        i = 1
+        i = 0
         while i < len(cleaned_data):
             if cleaned_data.loc[i, 'Tm'] == 'TOT':
                 cleaned_data = cleaned_data.drop(i)
