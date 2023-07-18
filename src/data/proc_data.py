@@ -42,7 +42,7 @@ class ProcData:
         aggregated_data.to_csv(f'../../data/interim/nba_{self.year}_aggregated.csv', index=False)
 
         # Select only the relevant columns
-        selected_data = aggregated_data[['Rk', 'Player','Pos', 'Age', 'PER', 'BPM', 'VORP', 'WS', 'PTS', 'AST', 'TRB','MP']]
+        selected_data = aggregated_data[['Rk', 'Player','Pos', 'Age', 'PER', 'BPM', 'VORP', 'WS', 'PTS', 'AST', 'TRB','MP','WLp','SRS']]
 
         
 

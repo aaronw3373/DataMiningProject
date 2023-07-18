@@ -58,8 +58,8 @@ class PlotCompare:
         
         if self.compare.lower() == 'yes':
             # Select only the relevant columns
-            selected_data_orig = data_orig[['Age', 'PER', 'BPM', 'VORP', 'WS', 'PTS', 'AST', 'TRB','MP']]
-            selected_data_or = data_or[['Age', 'PER', 'BPM', 'VORP', 'WS', 'PTS', 'AST', 'TRB','MP']]
+            selected_data_orig = data_orig[['Age', 'PER', 'BPM', 'VORP', 'WS', 'PTS', 'AST', 'TRB','MP','WLp','SRS']]
+            selected_data_or = data_or[['Age', 'PER', 'BPM', 'VORP', 'WS', 'PTS', 'AST', 'TRB','MP','WLp','SRS']]
 
             # Create a boxplot for each column of the selected data
             for column in selected_data_orig.columns:

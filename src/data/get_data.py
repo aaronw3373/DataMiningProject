@@ -32,7 +32,7 @@ class GetData:
             df = pd.read_html(str(table))[0]
 
             # Print the first 5 rows of the data frame
-            print(df.head())
+            #print(df.head())
 
             # Define path to the directory where you'd like to save the file
             # Make sure the directory exists beforehand, or use os.makedirs() to create it
@@ -71,7 +71,7 @@ class GetData:
             df_advanced = pd.read_html(str(table_advanced))[0]
 
             # Print the first 5 rows of the data frame
-            print(df_advanced.head())
+            #print(df_advanced.head())
 
             # Save the data frame to a csv file
             df_advanced.to_csv(os.path.join(raw_data_path, f'nba_{self.year}_advanced_raw.csv'), index=False)
@@ -86,7 +86,7 @@ class GetData:
         df_final = pd.merge(df, df_advanced, how='inner', on=['Player', 'Tm','Rk','Pos','Age','G'])
 
         # Print the first 5 rows of the final data frame
-        print(df_final.head())
+        #print(df_final.head())
 
         # Save the final data frame to a csv file
         df_final.to_csv(os.path.join(raw_data_path, f'nba_{self.year}_final_raw.csv'), index=False)
