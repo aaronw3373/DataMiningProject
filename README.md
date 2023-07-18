@@ -47,6 +47,27 @@ CSCI 5502/4502 Data Mining Summer 23' Project
       
 	      |--- models/ (trained and serialized models, model predictions, or model summaries)
 
+## How to Run Data Collection/ Compare Figures
+Go to the right directory
+
+	cd \src\data
+
+run
+
+ 	python main.py
+
+The User will be asked which year they are interested in.
+
+
+The User will then be given an option to gather, clean, and process data (yes/no)
+
+
+If yes, the User will be asked if they want to remove outliers (yes/no)
+
+If no, the User will be asked if they want to compare data (yes/no) 
+
+-- **[Both saved graphs for outliers and outliers removed for that year must exist]**
+
 
 ## Authors
 Tristan Swanson - tristan.swanson@colorado.edu
