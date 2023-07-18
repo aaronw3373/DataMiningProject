@@ -115,5 +115,19 @@ class DecisionTreeAnalysis:
         data_test_year['Predicted Trade Value'] = predictions
         print(data_test_year[['Player', 'Predicted Trade Value']])
 
+        i = 0
+        while i < len(data_test_year):
+            if data_test_year.loc[i, 'MP'] <= 0.05:
+                data_test_year = data_test_year.drop(i).reset_index(drop=True)
+                #print('removed', i)
+            i += 1
+
+        i = 0
+        while i < len(data_test_year):
+            if data_test_year.loc[i, 'MP'] <= 0.05:
+                data_test_year = data_test_year.drop(i)
+                #print('removed', i)
+            i += 1
+
         # Save to CSV
         data_test_year.to_csv(f'../../models/data/nba_predicted_trade_values.csv', index=False)

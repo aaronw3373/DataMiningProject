@@ -71,6 +71,11 @@ class CleanData:
             i += 1
 
 
+
+
+            
+
+
         
         # Create a new column 'MP' which is the average of 'MP_x' and 'MP_y'
         cleaned_data['MP_x'] = pd.to_numeric(cleaned_data['MP_x'], errors='coerce')
@@ -80,6 +85,7 @@ class CleanData:
 
         # Drop the 'MP_x' and 'MP_y' columns
         cleaned_data = cleaned_data.drop(columns=['MP_x', 'MP_y'])
+
 
         # Filter out 'Unnamed' columns
         cleaned_data = cleaned_data.filter(regex='^(?!Unnamed)')
@@ -105,6 +111,15 @@ class CleanData:
                 cleaned_data = cleaned_data.drop(i)
                 #print('removed', i)
             i += 1
+
+
+        i = 0
+        while i < len(cleaned_data):
+            if cleaned_data.loc['MP'] <= 0.05:
+                cleaned_data = cleaned_data.drop(i)
+                
+            i += 1
+
 
         # Save cleaned data to interim folder
         cleaned_data.to_csv(f'../../data/interim/nba_{self.year}_cleaned.csv', index=False)
