@@ -52,6 +52,7 @@ class CorrelationAnalysis:
             output_dir = f'../../output/figures/{self.year}/analysis'
             os.makedirs(output_dir, exist_ok=True)
             plt.savefig(f'../../output/figures/{self.year}/analysis/correlation_matrix_full.png')
+            correlation_matrix.to_csv(f'../../output/figures/{self.year}/analysis/correlation_matrix.csv', index=False)
             plt.show()
 
              # Take a subset of the data containing only the first 20 players

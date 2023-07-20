@@ -113,13 +113,6 @@ class CleanData:
             i += 1
 
 
-        i = 0
-        while i < len(cleaned_data):
-            if cleaned_data.loc['MP'] <= 0.05:
-                cleaned_data = cleaned_data.drop(i)
-                
-            i += 1
-
 
         # Save cleaned data to interim folder
         cleaned_data.to_csv(f'../../data/interim/nba_{self.year}_cleaned.csv', index=False)

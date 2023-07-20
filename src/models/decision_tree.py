@@ -23,17 +23,27 @@ class DecisionTreeAnalysis:
 
     def calculate_trade_value(self, data, cols_to_scale):
         # Define the weights for the normalized statistics
-        weights = {
-            'PER': 0.3,
-            'WS': 0.25,
-            'BPM': 0.15,
-            'VORP': 0.1,
-            'PTS': 0.05,
-            'AST': 0.05,
-            'TRB': 0.05,
-            'MP': 0.025,
-            'Age': -0.025
-        }
+
+        file = f'../../output/figures/{self.end_year}/analysis/correlation_matrix.csv'
+        correlation_matrix  = self.load_data(file)
+
+        # Drop the 'WLp' and 'SRS' columns as they are to be used to measure the success of the trade
+        correlation_matrix = correlation_matrix.drop(['WLp', 'SRS','Age'], axis=1)
+
+        # Compute the sum of the absolute correlations for each statistic
+        sum_abs_correlations = correlation_matrix.abs().sum()
+
+        # Normalize the sum of absolute correlations to get the weights
+        weights = sum_abs_correlations / sum_abs_correlations.sum()
+
+        # Convert the weights to a dictionary
+        weights_dict = weights.to_dict()
+
+        # Add a weight for 'Age'
+        weights_dict['Age'] = -0.025
+
+        # Use the weights calculated from the correlation matrix
+        weights = weights_dict
 
         # Apply Z-Scaling to the selected columns
         scaler = StandardScaler()
