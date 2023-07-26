@@ -125,6 +125,3 @@ def getInfo(year):
     	return info
 
 
-
-
-print(getInfo(2021))
