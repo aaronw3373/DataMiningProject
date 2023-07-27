@@ -1,19 +1,19 @@
 from decision_tree import DecisionTreeAnalysis
-from association_mining import AssociationRuleMining
+from comparison import Comparison
 
 
 # Ask the user for menu option
-option = input("[1]: Perform Decision Tree Analysis \n[2]: Perform Association Rule Mining \nSelect Option: ")
+option = input("[1]: Perform Decision Tree Analysis \n[2]: Perform Comparison \nSelect Option: ")
 
 
 if option == '1':
     print(f"Performing Decision Tree Analysis")
-    analysis = DecisionTreeAnalysis(2014, 2023)
+    analysis = DecisionTreeAnalysis(2014, 2022)
     analysis.run()
 elif option == '2':
-    print(f"Performing Association Rule Mining")
-    rule_mining = AssociationRuleMining(2023)
-    rule_mining.run()
+    print(f"Performing Comparison (2023-2022)")
+    comparison = Comparison(2023)
+    comparison.run()
 else:
     print(f"Option not Found.")
     pass

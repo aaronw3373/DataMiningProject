@@ -83,6 +83,8 @@ class CleanData:
         cleaned_data['MP'] = (cleaned_data['MP_x'] + cleaned_data['MP_y']) / 2
 
 
+
+
         # Drop the 'MP_x' and 'MP_y' columns
         cleaned_data = cleaned_data.drop(columns=['MP_x', 'MP_y'])
 
@@ -128,6 +130,20 @@ class CleanData:
 
         cleaned_data['WLp'] = cleaned_data['Tm'].map(lambda x: team_data[x]['W/L%'])
         cleaned_data['SRS'] = cleaned_data['Tm'].map(lambda x: team_data[x]['SRS'])
+
+        i = 0
+        while i < len(cleaned_data):
+            if cleaned_data.loc[i, 'MP'] <= 0.05:
+                cleaned_data = cleaned_data.drop(i).reset_index(drop=True)
+                #print('removed', i)
+            i += 1
+
+        i = 0
+        while i < len(cleaned_data):
+            if cleaned_data.loc[i, 'MP'] <= 0.05:
+                cleaned_data = cleaned_data.drop(i)
+                #print('removed', i)
+            i += 1
         
         if self.outliers.lower() == 'yes':
             for column in cleaned_data.columns:
