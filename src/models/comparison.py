@@ -46,7 +46,7 @@ class Comparison:
         # Calculate the difference in SRS
         data_traded['Difference_SRS'] = data_traded['SRS_2023'] - data_traded['SRS_2022']
         # Select only the columns we're interested in
-        data_traded = data_traded[['Player', 'Trade Value_2022', 'Trade Value_2023', 'Difference_TV','WLp_2022','WLp_2023','Difference_WLp','SRS_2022','SRS_2023','Difference_SRS']]
+        data_traded = data_traded[['Player', 'Trade Value_2022', 'Trade Value_2023', 'Difference_TV','WLp_2022','WLp_2023','Difference_WLp','SRS_2022','SRS_2023','Difference_SRS','Predicted Trade Value (RandomForest)_2023']]
 
         return data_traded
     
@@ -61,6 +61,22 @@ class Comparison:
         data_traded = data_traded.drop_duplicates(subset=['Trade Value_2022', 'SRS_2022'])
 
         data_traded.drop_duplicates(subset='Player', inplace=True)
+
+        # Sort by Average_SRS
+        data_traded_sorted = data_traded.sort_values(by='Predicted Trade Value (RandomForest)_2023')
+
+        plt.figure(figsize=(10, 6))
+        plt.scatter(data_traded_sorted['Trade Value_2023'], data_traded_sorted['Predicted Trade Value (RandomForest)_2023'], alpha=0.5)
+        plt.plot([data_traded_sorted['Trade Value_2023'].min(), data_traded_sorted['Trade Value_2023'].max()], 
+                [data_traded_sorted['Trade Value_2023'].min(), data_traded_sorted['Trade Value_2023'].max()], 
+                'k--', lw=2,label='Perfect Predictions')
+        plt.xlabel('Actual Trade Value')
+        plt.ylabel('Predicted Trade Value')
+        plt.title('Actual vs Predicted Trade Value (RandomForest)')
+        plt.grid(True)
+        plt.savefig('../../output/models/data/acutual_predicted_tv.png')
+        plt.legend()
+        plt.show()
 
         # Sort by SRS_2022
         data_traded_sorted_2022 = data_traded.sort_values(by='Trade Value_2022')
@@ -267,6 +283,7 @@ class Comparison:
         plt.grid(True)
         plt.savefig('../../output/models/data/SRS_srs2023.png')
         plt.show()
+
 
 
 
