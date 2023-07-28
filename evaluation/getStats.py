@@ -124,4 +124,3 @@ def getInfo(year):
     		pickle.dump(info, outfile)
     	return info
 
-
