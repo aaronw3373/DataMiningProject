@@ -53,7 +53,7 @@ def deltaTVavg(statsA, statsB, model):
 statsA = getStats.getInfo(year1)
 statsB = getStats.getInfo(year2)
 
-usemodel = 'GradientBoosting'
+usemodel = 'RandomForest'
 
 tvs = deltaTVavg(statsA, statsB, usemodel)
 wls = deltaWL(statsA, statsB)
